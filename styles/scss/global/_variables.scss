@@ -1,0 +1,18 @@
+$font-size-10: 62.5%;
+$font-fam-consolas: consolas;
+$font-weight-400: 400;
+$font-weight-700: 700;
+$white: hsl(0, 100%, 100%);
+$black: hsla(0, 0%, 0%, 1);
+$calculator-bg: hsla(0, 0%, 0%, 0.7);
+$btn-bg: hsl(0, 0%, 18%), hsl(0, 0%, 25%);
+$screen: hsl(69, 24%, 59%);
+
+html {
+   font-size: $font-size-10;
+
+   body {
+      font-size: 1.6rem;
+      font-family: $font-fam-consolas;
+   }
+}
