@@ -21,45 +21,57 @@ let num1;
 let num2;
 let operator;
 let display;
+let period;
 
+/* all variables return to default value */
 const reset = (value) => {
    num1 = "";
    num2 = "";
    operator = "";
    display = "";
+   period = "";
 
-   if (value == "AC") {
-      getDisplay().textContent = 0;
+   if (value == "AC" || value == "=") {
+      getDisplay().innerText = 0;
    }
 };
 
 reset();
 
+/* if all values are given calculate and display the result */
 const calculate = (num1, num2, operator) => {
-   getDisplay().textContent = "";
+   getDisplay().innerText = "";
 
    switch (operator) {
       case "+":
          const sum = parseFloat(num1) + parseFloat(num2);
-         getDisplay().innerText = sum.toLocaleString("en-US");
+         const sumResult = sum.toString().length > 8 ? sum.toExponential(2) : sum.toLocaleString("en-US");
+
+         getDisplay().innerText = sumResult;
          return reset();
          break;
 
       case "-":
          const difference = parseFloat(num1) - parseFloat(num2);
-         getDisplay().innerText = difference.toLocaleString("en-US");
+         const differenceResult = difference.toString().length > 8 ? difference.toExponential(2) : difference.toLocaleString("en-US");
+
+         getDisplay().innerText = differenceResult;
          return reset();
          break;
 
       case "x":
          const product = parseFloat(num1) * parseFloat(num2);
-         getDisplay().innerText = product.toLocaleString("en-US");
+         const productResult = product.toString().length > 8 ? product.toExponential(2) : product.toLocaleString("en-US");
+
+         getDisplay().innerText = productResult;
          return reset();
          break;
 
       case "÷":
          const quotient = parseFloat(num1) / parseFloat(num2);
-         getDisplay().innerText = quotient.toLocaleString("en-US");
+         const quotientResult = quotient.toString().length > 8 ? quotient.toExponential(2) : quotient.toLocaleString("en-US");
+
+         getDisplay().innerText = quotientResult;
          return reset();
          break;
 
@@ -68,42 +80,67 @@ const calculate = (num1, num2, operator) => {
    }
 };
 
-const displayResult = (result) => {
-   getDisplay().textContent = result;
+/* display all value in the screen */
+const displayResult = (result, value = "") => {
+   console.log("test");
+   getDisplay().innerText = value == "C" ? result : (display += result);
 };
 
+/* get all buttons */
 getAllBtns.forEach((btn) => {
    btn.addEventListener("click", (e) => {
       e.preventDefault();
 
-      let value = e.target.textContent;
+      let value = e.target.innerText;
 
-      if (value === "x" || value === "÷" || value === "-" || value === "+") {
-         operator = value;
-      } else if (operator) {
-         num2 += value;
-      } else {
-         num1 += value;
-      }
+      switch (value) {
+         case "+":
+         case "-":
+         case "x":
+         case "÷":
+            operator = value;
+            displayResult(operator);
+            return;
+            break;
 
-      if (value == "AC" || value == "C") {
-         if (value == "AC") {
+         // case ".":
+         //    if (!period && !num1) {
+         //       period = value;
+         //       display += period;
+         //       displayResult(display);
+         //    }
+         //    return;
+         //    break;
+
+         case "AC":
             reset(value);
-         } else {
-            let removeLast = getDisplay().textContent.split("");
-            removeLast.length >= 2 ? removeLast.pop() : reset();
+            return;
+            break;
 
-            console.log(removeLast.join(""));
-            displayResult(removeLast.join(""));
-         }
-         return;
-      }
+         case "C":
+            let removeLast = display.split("");
+            removeLast.length >= 2 ? removeLast.pop() : reset(value);
+            display = removeLast.join("");
 
-      display += value;
-      displayResult(display);
+            displayResult(display, value);
+            return;
+            break;
 
-      if (value === "=") {
-         num1 === "" || num2 === "" || operator === "" ? 0 : calculate(num1, num2, operator);
+         case "=":
+            if (operator) {
+               num1 = getDisplay().innerText.split(operator).shift();
+               num2 = getDisplay().innerText.split(operator).pop();
+
+               calculate(num1, num2, operator);
+            }
+            return;
+            break;
+
+         default:
+            displayResult(value);
+
+            return;
+            break;
       }
    });
 });
