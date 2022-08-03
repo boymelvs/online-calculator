@@ -1,0 +1,88 @@
+html {
+  font-size: 62.5%;
+}
+html body {
+  font-size: 1.6rem;
+  font-family: consolas;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 100vh;
+  min-width: 32rem;
+}
+
+.calculator {
+  width: 35rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: hsla(0deg, 0%, 0%, 0.7);
+}
+.calculator .display_screen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  padding: 2rem;
+  font-size: 5rem;
+  height: 7rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  outline: none;
+  background: hsl(69deg, 24%, 59%);
+  overflow: hidden;
+}
+.calculator .keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.calculator .keypad .btn,
+.calculator .keypad .equal,
+.calculator .keypad .zero {
+  background: linear-gradient(180deg, hsl(0deg, 0%, 18%), hsl(0deg, 0%, 25%));
+  border: 0.1rem solid hsl(0deg, 0%, 0%);
+  font-size: 2rem;
+  color: hsl(0deg, 100%, 100%);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.calculator .keypad .btn:hover,
+.calculator .keypad .equal:hover,
+.calculator .keypad .zero:hover {
+  cursor: pointer;
+}
+.calculator .keypad .btn:active,
+.calculator .keypad .equal:active,
+.calculator .keypad .zero:active {
+  filter: brightness(1.5);
+}
+.calculator .keypad .equal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  grid-row: span 2;
+}
+.calculator .keypad .zero {
+  grid-column: span 2;
+}
+
+/*# sourceMappingURL=main.css.map */

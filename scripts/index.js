@@ -17,6 +17,23 @@ calc.forEach((num, i) => {
 /* display the result */
 const getDisplay = () => document.querySelector(".display_screen");
 const getAllBtns = document.querySelectorAll(".num_pad");
+let num1;
+let num2;
+let operator;
+let display;
+
+const reset = (value) => {
+   num1 = "";
+   num2 = "";
+   operator = "";
+   display = "";
+
+   if (value == "AC") {
+      getDisplay().textContent = 0;
+   }
+};
+
+reset();
 
 const calculate = (num1, num2, operator) => {
    getDisplay().textContent = "";
@@ -24,38 +41,35 @@ const calculate = (num1, num2, operator) => {
    switch (operator) {
       case "+":
          const sum = parseFloat(num1) + parseFloat(num2);
-         return getDisplay().append(sum.toLocaleString("en-US"));
+         getDisplay().innerText = sum.toLocaleString("en-US");
+         return reset();
          break;
 
       case "-":
          const difference = parseFloat(num1) - parseFloat(num2);
-         return getDisplay().append(difference.toLocaleString("en-US"));
+         getDisplay().innerText = difference.toLocaleString("en-US");
+         return reset();
          break;
 
       case "x":
          const product = parseFloat(num1) * parseFloat(num2);
-         return getDisplay().append(product.toLocaleString("en-US"));
+         getDisplay().innerText = product.toLocaleString("en-US");
+         return reset();
          break;
 
       case "÷":
          const quotient = parseFloat(num1) / parseFloat(num2);
-         return getDisplay().append(quotient.toLocaleString("en-US"));
+         getDisplay().innerText = quotient.toLocaleString("en-US");
+         return reset();
          break;
 
       default:
-         return getDisplay().append("ERROR");
+         return (getDisplay().innerText = "ERROR");
    }
 };
 
-let num1 = "";
-let num2 = "";
-let operator = "";
-
-const reset = () => {
-   num1 = "";
-   num2 = "";
-   operator = "";
-   getDisplay().textContent = 0;
+const displayResult = (result) => {
+   getDisplay().textContent = result;
 };
 
 getAllBtns.forEach((btn) => {
@@ -63,18 +77,6 @@ getAllBtns.forEach((btn) => {
       e.preventDefault();
 
       let value = e.target.textContent;
-      let display = value;
-
-      if (value == "AC" || value == "C") {
-         if (value == "AC") {
-            reset();
-         } else {
-            let test = display.slice(0, display.length - 1);
-            console.log(test);
-         }
-
-         return;
-      }
 
       if (value === "x" || value === "÷" || value === "-" || value === "+") {
          operator = value;
@@ -82,14 +84,26 @@ getAllBtns.forEach((btn) => {
          num2 += value;
       } else {
          num1 += value;
-         console.log(num1, "num1");
       }
 
-      console.log(display, "display");
-      getDisplay().append(display);
+      if (value == "AC" || value == "C") {
+         if (value == "AC") {
+            reset(value);
+         } else {
+            let removeLast = getDisplay().textContent.split("");
+            removeLast.length >= 2 ? removeLast.pop() : reset();
+
+            console.log(removeLast.join(""));
+            displayResult(removeLast.join(""));
+         }
+         return;
+      }
+
+      display += value;
+      displayResult(display);
 
       if (value === "=") {
-         calculate(num1, num2, operator);
+         num1 === "" || num2 === "" || operator === "" ? 0 : calculate(num1, num2, operator);
       }
    });
 });
