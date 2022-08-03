@@ -23,10 +23,10 @@
    background: $calculator-bg;
 
    .display_screen {
-      @include flexBox(row, center, flex-end, 0);
+      @include flexBox(column, flex-end, center, 0);
       padding: 2rem;
-      font-size: 5rem;
-      height: 7rem;
+
+      height: 9rem;
       width: 100%;
       border: none;
       border-radius: 0.5rem;
@@ -34,6 +34,18 @@
       outline: none;
       background: $screen;
       overflow: hidden;
+
+      .display_value {
+         font-size: 2rem;
+         height: 3rem;
+         padding-top: 0.5rem;
+      }
+
+      .display_result {
+         font-size: 4rem;
+         height: 4rem;
+         padding-bottom: 0.5rem;
+      }
    }
 
    .keypad {

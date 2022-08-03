@@ -1,4 +1,5 @@
 "use strict";
+
 const getKeypad = document.querySelector(".keypad");
 
 const calc = ["AC", "C", "x", "÷", 7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "=", ".", 0];
@@ -15,8 +16,10 @@ calc.forEach((num, i) => {
 });
 
 /* display the result */
-const getDisplay = () => document.querySelector(".display_screen");
+const getDisplay = () => document.querySelector(".display_result");
+const getDisplayValue = () => document.querySelector(".display_value");
 const getAllBtns = document.querySelectorAll(".num_pad");
+
 let num1;
 let num2;
 let operator;
@@ -31,8 +34,9 @@ const reset = (value) => {
    display = "";
    period = "";
 
-   if (value == "AC" || value == "=") {
+   if (value == "AC") {
       getDisplay().innerText = 0;
+      getDisplayValue().innerText = "";
    }
 };
 
@@ -40,7 +44,7 @@ reset();
 
 /* if all values are given calculate and display the result */
 const calculate = (num1, num2, operator) => {
-   getDisplay().innerText = "";
+   getDisplayValue().innerText = display;
 
    switch (operator) {
       case "+":
@@ -48,7 +52,7 @@ const calculate = (num1, num2, operator) => {
          const sumResult = sum.toString().length > 8 ? sum.toExponential(2) : sum.toLocaleString("en-US");
 
          getDisplay().innerText = sumResult;
-         return reset();
+         reset();
          break;
 
       case "-":
@@ -56,7 +60,7 @@ const calculate = (num1, num2, operator) => {
          const differenceResult = difference.toString().length > 8 ? difference.toExponential(2) : difference.toLocaleString("en-US");
 
          getDisplay().innerText = differenceResult;
-         return reset();
+         reset();
          break;
 
       case "x":
@@ -64,7 +68,7 @@ const calculate = (num1, num2, operator) => {
          const productResult = product.toString().length > 8 ? product.toExponential(2) : product.toLocaleString("en-US");
 
          getDisplay().innerText = productResult;
-         return reset();
+         reset();
          break;
 
       case "÷":
@@ -72,7 +76,7 @@ const calculate = (num1, num2, operator) => {
          const quotientResult = quotient.toString().length > 8 ? quotient.toExponential(2) : quotient.toLocaleString("en-US");
 
          getDisplay().innerText = quotientResult;
-         return reset();
+         reset();
          break;
 
       default:
@@ -82,8 +86,13 @@ const calculate = (num1, num2, operator) => {
 
 /* display all value in the screen */
 const displayResult = (result, value = "") => {
-   console.log("test");
-   getDisplay().innerText = value == "C" ? result : (display += result);
+   if (display.length > 16) {
+      let maxLength = display.split("");
+      maxLength.pop();
+      display = maxLength.join("");
+   }
+
+   getDisplay().innerText = value === "C" ? result : (display += result);
 };
 
 /* get all buttons */
@@ -99,8 +108,9 @@ getAllBtns.forEach((btn) => {
          case "x":
          case "÷":
             operator = value;
+            getDisplayValue().innerText = getDisplay().innerText;
             displayResult(operator);
-            return;
+
             break;
 
          // case ".":
@@ -114,33 +124,31 @@ getAllBtns.forEach((btn) => {
 
          case "AC":
             reset(value);
-            return;
+
             break;
 
          case "C":
-            let removeLast = display.split("");
-            removeLast.length >= 2 ? removeLast.pop() : reset(value);
-            display = removeLast.join("");
+            let removeLast = getDisplay().innerText.length <= 1 ? 0 : display.split("");
+            removeLast.length > 1 ? removeLast.pop() : display;
+            display = removeLast == 0 ? 0 : removeLast.join("");
 
             displayResult(display, value);
-            return;
+
             break;
 
          case "=":
-            if (operator) {
-               num1 = getDisplay().innerText.split(operator).shift();
-               num2 = getDisplay().innerText.split(operator).pop();
+            num1 = getDisplayValue().innerText.split(operator).shift();
+            num2 = getDisplay().innerText.split(operator).pop();
 
+            if (operator && num1 && num2) {
                calculate(num1, num2, operator);
             }
-            return;
+
             break;
 
          default:
             displayResult(value);
-
             return;
-            break;
       }
    });
 });
