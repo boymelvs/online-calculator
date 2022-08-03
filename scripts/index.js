@@ -50,7 +50,6 @@ const calculate = (num1, num2, operator) => {
 let num1 = "";
 let num2 = "";
 let operator = "";
-let display;
 
 const reset = () => {
    num1 = "";
@@ -64,7 +63,7 @@ getAllBtns.forEach((btn) => {
       e.preventDefault();
 
       let value = e.target.textContent;
-      display = num1 + operator + num2;
+      let display = value;
 
       if (value == "AC" || value == "C") {
          if (value == "AC") {
@@ -87,7 +86,7 @@ getAllBtns.forEach((btn) => {
       }
 
       console.log(display, "display");
-      //   getDisplay().append(display);
+      getDisplay().append(display);
 
       if (value === "=") {
          calculate(num1, num2, operator);
