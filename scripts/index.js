@@ -23,28 +23,32 @@ const getAllBtns = document.querySelectorAll(".num_pad");
 let num1;
 let num2;
 let operator;
+let operatorCount = 0;
 let display;
 let period;
+let periodCount = 0;
 
 /* all variables return to default value */
 const reset = (value) => {
    num1 = "";
    num2 = "";
    operator = "";
+   operatorCount = 0;
    display = "";
    period = "";
+   periodCount = 0;
 
-   if (value == "AC") {
+   if (value == "AC" || value == "C") {
       getDisplay().innerText = 0;
       getDisplayValue().innerText = "";
    }
 };
 
-reset();
+reset("AC");
 
 /* if all values are given calculate and display the result */
 const calculate = (num1, num2, operator) => {
-   getDisplayValue().innerText = display;
+   getDisplayValue().innerText = `${num1} ${operator} ${num2}`;
 
    switch (operator) {
       case "+":
@@ -86,7 +90,7 @@ const calculate = (num1, num2, operator) => {
 
 /* display all value in the screen */
 const displayResult = (result, value = "") => {
-   if (display.length > 16) {
+   if (getDisplay().innerText.length > 15) {
       let maxLength = display.split("");
       maxLength.pop();
       display = maxLength.join("");
@@ -107,20 +111,29 @@ getAllBtns.forEach((btn) => {
          case "-":
          case "x":
          case "÷":
-            operator = value;
-            getDisplayValue().innerText = getDisplay().innerText;
-            displayResult(operator);
+            if (operatorCount == 0) {
+               operator = value;
+               getDisplayValue().innerText = getDisplay().innerText;
+               displayResult(operator);
+               operatorCount = 1;
+               periodCount = 1;
+            }
 
             break;
 
-         // case ".":
-         //    if (!period && !num1) {
-         //       period = value;
-         //       display += period;
-         //       displayResult(display);
-         //    }
-         //    return;
-         //    break;
+         case ".":
+            if (periodCount == 0) {
+               period = value;
+               displayResult(period);
+            }
+
+            if (periodCount == 1 && operatorCount == 1) {
+               period = value;
+               displayResult(period);
+            }
+
+            periodCount += 1;
+            break;
 
          case "AC":
             reset(value);
@@ -130,8 +143,10 @@ getAllBtns.forEach((btn) => {
          case "C":
             let removeLast = getDisplay().innerText.length <= 1 ? 0 : display.split("");
             removeLast.length > 1 ? removeLast.pop() : display;
-            display = removeLast == 0 ? 0 : removeLast.join("");
+            display = removeLast == 0 ? "" : removeLast.join("");
 
+            operatorCount = 0;
+            periodCount = 0;
             displayResult(display, value);
 
             break;

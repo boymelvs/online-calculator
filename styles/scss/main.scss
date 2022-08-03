@@ -24,9 +24,9 @@
 
    .display_screen {
       @include flexBox(column, flex-end, center, 0);
-      padding: 2rem;
+      padding: 2rem 1.5rem;
 
-      height: 9rem;
+      height: 8rem;
       width: 100%;
       border: none;
       border-radius: 0.5rem;
@@ -36,15 +36,13 @@
       overflow: hidden;
 
       .display_value {
-         font-size: 2rem;
-         height: 3rem;
-         padding-top: 0.5rem;
+         font-size: 1.8rem;
+         height: 4rem;
       }
 
       .display_result {
-         font-size: 4rem;
+         font-size: 3.2rem;
          height: 4rem;
-         padding-bottom: 0.5rem;
       }
    }
 
