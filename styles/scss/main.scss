@@ -17,7 +17,7 @@
 }
 
 .calculator {
-   width: 35rem;
+   width: 36rem;
    padding: 3rem 2rem 2rem 2rem;
    border-radius: 1rem;
    background: $calculator-bg;
@@ -26,7 +26,7 @@
       @include flexBox(column, flex-end, center, 0);
       padding: 2rem 1.5rem;
 
-      height: 8rem;
+      height: 7rem;
       width: 100%;
       border: none;
       border-radius: 0.5rem;
@@ -36,13 +36,14 @@
       overflow: hidden;
 
       .display_value {
-         font-size: 1.8rem;
-         height: 4rem;
+         font-size: 1.6rem;
+         height: 3rem;
       }
 
       .display_result {
-         font-size: 3.2rem;
-         height: 4rem;
+         font-size: 2.5rem;
+         height: 3rem;
+         font-weight: $font-weight-500;
       }
    }
 
@@ -56,7 +57,7 @@
       .zero {
          background: linear-gradient(180deg, $btn-bg);
          border: 0.1rem solid $black;
-         font-size: 2rem;
+         font-size: 1.6rem;
 
          color: $white;
          text-align: center;

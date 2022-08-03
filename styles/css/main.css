@@ -1,9 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 html {
   font-size: 62.5%;
 }
 html body {
   font-size: 1.6rem;
   font-family: consolas;
+  font-weight: 400;
+}
+
+footer {
+  font-size: 1.2rem;
+  font-family: "Space Mono", sans-serif;
 }
 
 *,
@@ -25,7 +32,7 @@ html body {
 }
 
 .calculator {
-  width: 35rem;
+  width: 36rem;
   padding: 3rem 2rem 2rem 2rem;
   border-radius: 1rem;
   background: hsla(0deg, 0%, 0%, 0.7);
@@ -37,7 +44,7 @@ html body {
   justify-content: center;
   gap: 0;
   padding: 2rem 1.5rem;
-  height: 8rem;
+  height: 7rem;
   width: 100%;
   border: none;
   border-radius: 0.5rem;
@@ -47,12 +54,13 @@ html body {
   overflow: hidden;
 }
 .calculator .display_screen .display_value {
-  font-size: 1.8rem;
-  height: 4rem;
+  font-size: 1.6rem;
+  height: 3rem;
 }
 .calculator .display_screen .display_result {
-  font-size: 3.2rem;
-  height: 4rem;
+  font-size: 2.5rem;
+  height: 3rem;
+  font-weight: 500;
 }
 .calculator .keypad {
   display: grid;
@@ -64,7 +72,7 @@ html body {
 .calculator .keypad .zero {
   background: linear-gradient(180deg, hsl(0deg, 0%, 18%), hsl(0deg, 0%, 25%));
   border: 0.1rem solid hsl(0deg, 0%, 0%);
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: hsl(0deg, 100%, 100%);
   text-align: center;
   padding: 1rem;

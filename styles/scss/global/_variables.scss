@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
 $font-size-10: 62.5%;
 $font-fam-consolas: consolas;
+$font-fam-spacemono: "Space Mono", sans-serif;
 $font-weight-400: 400;
-$font-weight-700: 700;
+$font-weight-500: 500;
 $white: hsl(0, 100%, 100%);
 $black: hsla(0, 0%, 0%, 1);
 $calculator-bg: hsla(0, 0%, 0%, 0.7);
@@ -14,5 +17,11 @@ html {
    body {
       font-size: 1.6rem;
       font-family: $font-fam-consolas;
+      font-weight: $font-weight-400;
    }
+}
+
+footer {
+   font-size: 1.2rem;
+   font-family: $font-fam-spacemono;
 }
