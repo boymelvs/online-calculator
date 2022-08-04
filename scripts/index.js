@@ -6,7 +6,6 @@ const calc = ["AC", "C", "x", "÷", 7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "=", ".
 
 /* create buttons */
 let keyButton = [];
-// const keyPad = createElement("div");
 
 calc.forEach((num, i) => {
    let btn = "=" === num ? "equal" : 0 === num ? "zero" : "btn";
@@ -23,10 +22,10 @@ const getAllBtns = document.querySelectorAll(".num_pad");
 let num1;
 let num2;
 let operator;
-let operatorCount = 0;
+let operatorCount;
 let display;
 let period;
-let periodCount = 0;
+let periodCount;
 
 /* all variables return to default value */
 const reset = (value) => {
@@ -41,6 +40,7 @@ const reset = (value) => {
    if (value == "AC" || value == "C") {
       getDisplay().innerText = 0;
       getDisplayValue().innerText = "";
+      return 0;
    }
 };
 
@@ -90,10 +90,8 @@ const calculate = (num1, num2, operator) => {
 
 /* display all value in the screen */
 const displayResult = (result, value = "") => {
-   if (getDisplay().innerText.length > 19) {
-      let maxLength = display.split("");
-      maxLength.pop();
-      display = maxLength.join("");
+   if (getDisplay().innerText.length > 16) {
+      display = display.slice(0, -1);
    }
 
    getDisplay().innerText = value === "C" ? result : (display += result);
@@ -122,12 +120,7 @@ getAllBtns.forEach((btn) => {
             break;
 
          case ".":
-            if (periodCount == 0) {
-               period = value;
-               displayResult(period);
-            }
-
-            if (periodCount == 1 && operatorCount == 1) {
+            if (period == 0 || (periodCount == 1 && operatorCount == 1)) {
                period = value;
                displayResult(period);
             }
@@ -141,10 +134,7 @@ getAllBtns.forEach((btn) => {
             break;
 
          case "C":
-            let removeLast = getDisplay().innerText.length <= 1 ? 0 : display.split("");
-            removeLast.length > 1 ? removeLast.pop() : display;
-            display = removeLast == 0 ? "" : removeLast.join("");
-
+            display = display === 0 ? reset(value) : display.slice(0, -1);
             operatorCount = 0;
             periodCount = 0;
             displayResult(display, value);
