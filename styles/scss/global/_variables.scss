@@ -7,8 +7,12 @@ $font-weight-400: 400;
 $font-weight-500: 500;
 $white: hsl(0, 100%, 100%);
 $black: hsla(0, 0%, 0%, 1);
+
 $calculator-bg: hsla(0, 0%, 0%, 0.7);
-$btn-bg: hsl(0, 0%, 18%), hsl(0, 0%, 25%);
+$calculator-shadow: hsla(0, 0%, 0%, 0.5);
+$btn-bg-secondary: hsl(0, 0%, 18%), hsl(0, 0%, 25%);
+$btn-bg-primary: hsl(0, 0%, 18%), hsl(0, 0%, 30%);
+$btn-border-primary: hsl(0, 0%, 0%, 0.2);
 $screen: hsl(69, 24%, 59%);
 
 html {

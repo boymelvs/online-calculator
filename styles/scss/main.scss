@@ -21,6 +21,7 @@
    padding: 3rem 2rem 2rem 2rem;
    border-radius: 1rem;
    background: $calculator-bg;
+   box-shadow: 0 0 0.5rem 0.1rem $calculator-shadow;
 
    .display_screen {
       @include flexBox(column, flex-end, center, 0);
@@ -55,14 +56,15 @@
       .btn,
       .equal,
       .zero {
-         background: linear-gradient(180deg, $btn-bg);
-         border: 0.1rem solid $black;
+         border: 0.15rem solid $black;
          font-size: 1.6rem;
-
          color: $white;
          text-align: center;
          padding: 1rem;
          border-radius: 0.5rem;
+         background: linear-gradient(180deg, $btn-bg-secondary);
+         position: relative;
+         z-index: 2;
 
          &:hover {
             cursor: pointer;
@@ -70,6 +72,21 @@
 
          &:active {
             filter: brightness(1.5);
+         }
+
+         &::before {
+            content: "";
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            border-radius: 0.5rem;
+            border-top: 0.15rem solid $btn-border-primary;
+            border-bottom: 0.15rem solid $btn-border-primary;
+            border-left: 0.15rem solid $btn-border-primary;
+            background: linear-gradient(90deg, $btn-bg-primary);
+            z-index: -1;
          }
       }
 
