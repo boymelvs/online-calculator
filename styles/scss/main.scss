@@ -20,14 +20,15 @@
    width: 36rem;
    padding: 3rem 2rem 2rem 2rem;
    border-radius: 1rem;
+   border: 0.1rem solid $black;
    background: $calculator-bg;
    box-shadow: 0 0 0.5rem 0.1rem $calculator-shadow;
 
    .display_screen {
       @include flexBox(column, flex-end, center, 0);
-      padding: 2rem 1.5rem;
+      padding: 0.5rem 1.5rem;
 
-      height: 7rem;
+      height: 6rem;
       width: 100%;
       border: none;
       border-radius: 0.5rem;
@@ -35,15 +36,16 @@
       outline: none;
       background: $screen;
       overflow: hidden;
+      border: 0.1rem solid $black;
+      box-shadow: inset 0 0 0.5rem 0.25rem $calculator-shadow;
 
       .display_value {
-         font-size: 1.6rem;
+         font-size: 1.4rem;
          height: 3rem;
       }
 
       .display_result {
-         font-size: 2.5rem;
-         height: 3rem;
+         font-size: 3rem;
          font-weight: $font-weight-500;
       }
    }

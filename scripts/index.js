@@ -53,7 +53,7 @@ const calculate = (num1, num2, operator) => {
    switch (operator) {
       case "+":
          const sum = parseFloat(num1) + parseFloat(num2);
-         const sumResult = sum.toString().length > 18 ? sum.toExponential(2) : sum.toLocaleString("en-US");
+         const sumResult = sum.toString().length > 16 ? sum.toExponential(2) : sum.toLocaleString("en-US");
 
          getDisplay().innerText = sumResult;
          reset();
@@ -61,7 +61,7 @@ const calculate = (num1, num2, operator) => {
 
       case "-":
          const difference = parseFloat(num1) - parseFloat(num2);
-         const differenceResult = difference.toString().length > 18 ? difference.toExponential(2) : difference.toLocaleString("en-US");
+         const differenceResult = difference.toString().length > 16 ? difference.toExponential(2) : difference.toLocaleString("en-US");
 
          getDisplay().innerText = differenceResult;
          reset();
@@ -69,7 +69,7 @@ const calculate = (num1, num2, operator) => {
 
       case "x":
          const product = parseFloat(num1) * parseFloat(num2);
-         const productResult = product.toString().length > 18 ? product.toExponential(2) : product.toLocaleString("en-US");
+         const productResult = product.toString().length > 16 ? product.toExponential(2) : product.toLocaleString("en-US");
 
          getDisplay().innerText = productResult;
          reset();
@@ -77,7 +77,7 @@ const calculate = (num1, num2, operator) => {
 
       case "÷":
          const quotient = parseFloat(num1) / parseFloat(num2);
-         const quotientResult = quotient.toString().length > 18 ? quotient.toExponential(2) : quotient.toLocaleString("en-US");
+         const quotientResult = quotient.toString().length > 16 ? quotient.toExponential(2) : quotient.toLocaleString("en-US");
 
          getDisplay().innerText = quotientResult;
          reset();
