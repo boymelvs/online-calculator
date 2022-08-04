@@ -1,18 +1,18 @@
 "use strict";
 
-const getKeypad = document.querySelector(".keypad");
+const getKeypad = () => document.querySelector(".keypad");
 
-const calc = ["AC", "C", "x", "÷", 7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "=", ".", 0];
+const keyPadItems = ["AC", "C", "x", "÷", 7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "=", ".", 0];
 
 /* create buttons */
-let keyButton = [];
+for (let item of keyPadItems) {
+   const keyPadBtn = document.createElement("div");
+   let btn = "=" === item ? "equal" : 0 === item ? "zero" : "btn";
 
-calc.forEach((num, i) => {
-   let btn = "=" === num ? "equal" : 0 === num ? "zero" : "btn";
-
-   keyButton.push(`<div class="num_pad ${btn}" >${num}</div>`);
-   getKeypad.innerHTML += keyButton[i];
-});
+   keyPadBtn.setAttribute("class", `num_pad ${btn}`);
+   keyPadBtn.append(`${item}`);
+   getKeypad().append(keyPadBtn);
+}
 
 /* display the result */
 const getDisplay = () => document.querySelector(".display_result");
