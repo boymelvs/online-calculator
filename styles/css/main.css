@@ -45,8 +45,8 @@ footer {
   align-items: flex-end;
   justify-content: center;
   gap: 0;
-  padding: 0.5rem 1.5rem;
-  height: 6rem;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  height: 7rem;
   width: 100%;
   border: none;
   border-radius: 0.5rem;
@@ -58,7 +58,7 @@ footer {
   box-shadow: inset 0 0 0.5rem 0.25rem hsla(0deg, 0%, 0%, 0.5);
 }
 .calculator .display_screen .display_value {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   height: 3rem;
 }
 .calculator .display_screen .display_result {

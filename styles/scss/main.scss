@@ -26,9 +26,9 @@
 
    .display_screen {
       @include flexBox(column, flex-end, center, 0);
-      padding: 0.5rem 1.5rem;
+      padding: 1rem 1.5rem 0.5rem 1.5rem;
 
-      height: 6rem;
+      height: 7rem;
       width: 100%;
       border: none;
       border-radius: 0.5rem;
@@ -40,7 +40,7 @@
       box-shadow: inset 0 0 0.5rem 0.25rem $calculator-shadow;
 
       .display_value {
-         font-size: 1.4rem;
+         font-size: 1.5rem;
          height: 3rem;
       }
 
