@@ -14,6 +14,7 @@
    @include flexBox(column, center, center, 2rem);
    min-height: 100vh;
    min-width: 32rem;
+   text-align: center;
 }
 
 .calculator {
