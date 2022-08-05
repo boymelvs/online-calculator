@@ -145,7 +145,7 @@ getAllBtns.forEach((btn) => {
             num1 = getDisplayValue().innerText.split(operator).shift();
             num2 = getDisplay().innerText.split(operator).pop();
 
-            if (operator && num1 != "." && num2 != ".") {
+            if (operator && num1 != "." && num1 && num2 != "." && num2) {
                calculate(num1, num2, operator);
             }
 
